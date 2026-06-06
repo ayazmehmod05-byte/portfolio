@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ayaz Mehmood — Software Engineer in Rawalpindi. Full-stack development, databases, automation, and production-ready web applications." />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:title" content="Ayaz Mehmood | Software Engineer" />
+  <meta property="og:description" content="Professional software engineer portfolio — web apps, SQL, Python, JavaScript, and scalable solutions." />
+  <meta property="og:type" content="website" />
+  <title>Ayaz Mehmood | Software Engineer</title>
+  <link rel="icon" href="assets/profile-engineer.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div id="startup-screen" class="startup-screen" aria-hidden="true">
+    <div class="startup-bg" aria-hidden="true">
+      <div class="startup-grid"></div>
+      <div class="startup-aurora startup-aurora--a"></div>
+      <div class="startup-aurora startup-aurora--b"></div>
+      <div class="startup-scanline"></div>
+    </div>
+    <div class="startup-content">
+      <p class="startup-kicker">Portfolio · 2026</p>
+      <div class="startup-stage">
+        <div class="startup-ring" aria-hidden="true">
+          <svg class="startup-ring-svg" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <path id="startupOrbitPath" d="M 180,180 m -150,0 a 150,150 0 1,1 300,0 a 150,150 0 1,1 -300,0" fill="none" />
+              <linearGradient id="startupRingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0ea5e9" />
+                <stop offset="100%" stop-color="#0ef0c5" />
+              </linearGradient>
+            </defs>
+            <circle class="startup-ring-track" cx="180" cy="180" r="150" />
+            <circle class="startup-ring-progress" cx="180" cy="180" r="150" id="startupRingProgress" />
+            <text class="startup-ring-text">
+              <textPath href="#startupOrbitPath" startOffset="0%">SOFTWARE ENGINEER · RAWALPINDI · </textPath>
+            </text>
+          </svg>
+        </div>
+        <div class="startup-monogram" aria-hidden="true">AM</div>
+        <div class="startup-logo" data-startup-name="Ayaz&#10;Mehmood"></div>
+      </div>
+      <p class="startup-tagline">Building secure, polished digital experiences</p>
+      <div class="startup-progress">
+        <div class="startup-progress-track">
+          <div class="startup-progress-fill" id="startupProgressFill"></div>
+        </div>
+        <div class="startup-progress-meta">
+          <span class="startup-status" id="startupStatus">Booting environment</span>
+          <span class="startup-percent" id="startupPercent">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-shell">
+    <nav class="navbar" id="siteNav">
+      <a href="#home" class="logo">AM</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero" id="home">
+      <div class="hero-wrapper">
+        <div class="hero-intro">
+          <h1 id="hero-name" class="hero-name-fit"><span>A</span><span>y</span><span>a</span><span>z</span> <span>M</span><span>e</span><span>h</span><span>m</span><span>o</span><span>o</span><span>d</span></h1>
+          <p class="eyebrow">Software Engineer</p>
+          <p class="hero-text">Building secure, polished applications with SQL, C++, Python, JavaScript, HTML, and CSS. I turn ideas into reliable code and strong digital experiences.</p>
+
+          <div class="hero-actions">
+            <a class="button primary" href="#contact">Work with me</a>
+            <a class="button secondary" href="#projects">View projects</a>
+          </div>
+
+          <div class="hero-stats">
+            <div><span>05+</span><p>Projects</p></div>
+            <div><span>06</span><p>Core skills</p></div>
+            <div><span>01</span><p>Top university</p></div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="panel-header">
+            <span>Developer profile</span>
+            <strong>Rawalpindi, Pakistan</strong>
+          </div>
+          <div class="panel-list">
+            <div><strong>University</strong><span>Arid Agriculture University Rawalpindi</span></div>
+            <div><strong>Role</strong><span>Software Engineer</span></div>
+            <div><strong>Languages</strong><span>SQL · C++ · Python · JavaScript · HTML · CSS</span></div>
+            <div><strong>Focus</strong><span>Web apps, automation, database solutions</span></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="section intro" id="about">
+        <div class="section-header">
+          <p class="eyebrow">Who I am</p>
+          <h2>Professional Developer focused on clean, reliable code.</h2>
+        </div>
+        <p>I am a software engineer with a passion for robust architecture, automation, and intuitive user experiences. I use programming to solve complex problems and create systems that work smoothly in production.</p>
+      </section>
+
+      <section class="section work-grid" id="work">
+        <article class="work-card">
+          <span class="work-tag">Software Development</span>
+          <h3>Full-stack engineering</h3>
+          <p>Delivering responsive web applications and backend logic with a strong focus on maintainable code.</p>
+        </article>
+        <article class="work-card">
+          <span class="work-tag">Data & Databases</span>
+          <h3>SQL and data modeling</h3>
+          <p>Designing database schemas, writing optimized queries, and managing structured data reliably.</p>
+        </article>
+        <article class="work-card">
+          <span class="work-tag">Automation</span>
+          <h3>Python scripting</h3>
+          <p>Automating workflows and supporting faster development with reusable scripts and tools.</p>
+        </article>
+      </section>
+
+      <section class="section cards-grid" id="skills">
+        <div class="info-block">
+          <p class="eyebrow">Skills</p>
+          <h2>Technology stack I use regularly</h2>
+          <p>From core programming to frontend interfaces and database architecture, I am comfortable across the full development lifecycle.</p>
+        </div>
+
+        <div class="skill-grid">
+          <article class="skill-card"><h3>SQL</h3><p>Database queries, table design, and data management.</p></article>
+          <article class="skill-card"><h3>C++</h3><p>Performance-aware object-oriented code and algorithms.</p></article>
+          <article class="skill-card"><h3>Python</h3><p>Scripting, automation, and backend logic.</p></article>
+          <article class="skill-card"><h3>JavaScript</h3><p>Interactive interfaces and frontend behavior.</p></article>
+          <article class="skill-card"><h3>HTML & CSS</h3><p>Responsive pages, modern UI design, and clean structure.</p></article>
+        </div>
+      </section>
+
+      <section class="section project-section" id="projects">
+        <div class="section-header">
+          <p class="eyebrow">Featured Work</p>
+          <h2>Recent projects that show my approach</h2>
+        </div>
+
+        <div class="project-list">
+          <article class="project-card">
+            <div>
+              <span class="project-tag">Portfolio</span>
+              <h3>Developer showcase</h3>
+              <p>A polished portfolio site built to highlight skills, experience, and projects with a professional responsive layout.</p>
+            </div>
+            <span class="project-status">Live</span>
+          </article>
+          <article class="project-card">
+            <div>
+              <span class="project-tag">Web App</span>
+              <h3>Interactive dashboard</h3>
+              <p>A dashboard concept with clean metrics, card layouts, and intuitive navigation for data-driven workflows.</p>
+            </div>
+            <span class="project-status">Concept</span>
+          </article>
+          <article class="project-card">
+            <div>
+              <span class="project-tag">Database</span>
+              <h3>SQL management</h3>
+              <p>Structured data design and query optimization for reliable backend support.</p>
+            </div>
+            <span class="project-status">Ready</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section achievement-section">
+        <div class="section-header">
+          <p class="eyebrow">Achievements</p>
+          <h2>What I bring to every project</h2>
+        </div>
+
+        <div class="achievement-grid">
+          <article class="achievement-card"><h3>University Graduate</h3><p>Completed Software Engineering at Arid Agriculture University Rawalpindi.</p></article>
+          <article class="achievement-card"><h3>Developer Mindset</h3><p>Focus on clean architecture, maintainability, and practical solutions.</p></article>
+          <article class="achievement-card"><h3>Project Delivery</h3><p>Consistent delivery of responsive, production-ready web experiences.</p></article>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="section-header">
+          <p class="eyebrow">Get in touch</p>
+          <h2>Let’s build something professional together.</h2>
+        </div>
+        <div class="contact-panel">
+          <div class="contact-copy">
+            <p>Whether you need a web application, automation script, or database solution, I’m available to collaborate and bring your ideas to life.</p>
+            <div class="contact-actions">
+              <a class="icon-link icon-only" href="mailto:ayazmehmod05@gmail.com" aria-label="Email Ayaz Mehmood" title="Email Ayaz Mehmood">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="icon-svg">
+                  <path d="M4 6.5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-10a1 1 0 0 1 1-1Z"/>
+                  <path d="m4.93 7.5 7.07 5 7.07-5"/>
+                </svg>
+              </a>
+              <a class="icon-link icon-only" href="https://www.linkedin.com/in/ayaz-mehmood-586869377?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noreferrer noopener" aria-label="Visit Ayaz's LinkedIn profile" title="LinkedIn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="icon-svg">
+                  <path d="M4 4.5h4v15H4z"/>
+                  <circle cx="6" cy="6.5" r="1.5"/>
+                  <path d="M9.5 9.5h4v2.25A3.25 3.25 0 0 1 20 9.5V19.5h-4v-6.5a2 2 0 0 0-4 0V19.5h-4Z"/>
+                </svg>
+              </a>
+              <a class="icon-link icon-only" href="https://wa.me/923296430927" target="_blank" rel="noreferrer noopener" aria-label="Chat on WhatsApp with Ayaz" title="WhatsApp">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="icon-svg">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-1.2 4.4 8.51 8.51 0 0 1-3.2 3.2 8.38 8.38 0 0 1-4.4 1.2 8.5 8.5 0 0 1-6.4-2.7L3 21l1.7-4.8A8.5 8.5 0 0 1 3.5 11.5 8.5 8.5 0 0 1 12 3a8.38 8.38 0 0 1 4.4 1.2 8.51 8.51 0 0 1 3.2 3.2A8.38 8.38 0 0 1 21 11.5Z"/>
+                  <path d="M8.5 11.5c.3 1 1.3 2.3 2.4 2.7l.2.1c.7.3 1.5.2 2-.3l.3-.3c.4-.5.7-.8.9-1.3s.2-1 .1-1.5c0-.3-.2-.6-.5-.8l-.6-.4c-.2-.1-.4-.1-.6 0l-.5.2c-.4.1-.7.4-.9.7-.2.4-.2.7-.1 1.1.1.3.3.6.6.8.3.2.6.3 1 .2.3 0 .6-.2.9-.4"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="profile-frame">
+              <div class="profile-glow"></div>
+              <div class="profile-avatar">
+                <img
+                  src="WhatsApp Image 2026-06-04 at 12.58.16 AM (1).jpeg"
+                  alt="Ayaz Mehmood — professional software engineer portrait"
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+            <div class="contact-details">
+              <div><strong>Email</strong><span>ayazmehmod05@gmail.com</span></div>
+              <div><strong>Location</strong><span>Rawalpindi, Pakistan</span></div>
+              <div><strong>Field</strong><span>Software Engineering</span></div>
+              <div><strong>WhatsApp</strong><span>+92 329 6430927</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 Ayaz Mehmood | Software Engineer</p>
+    </footer>
+  </div>
+
+  <div id="particles-bg"></div>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ayaz Mehmood",
+    "jobTitle": "Software Engineer",
+    "email": "ayazmehmod05@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Rawalpindi",
+      "addressCountry": "PK"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Arid Agriculture University Rawalpindi"
+    },
+    "knowsAbout": ["SQL", "C++", "Python", "JavaScript", "HTML", "CSS", "Web Development", "Database Design"],
+    "url": "https://www.linkedin.com/in/ayaz-mehmood-586869377"
+  }
+  </script>
+  <script src="particles.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
