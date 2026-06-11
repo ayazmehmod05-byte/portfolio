@@ -1,4 +1,35 @@
 (function () {
+  function random(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  function computeMouseInfluence(px, py, mouseX, mouseY, influenceRadius, influence, delta) {
+    const dx = px - mouseX;
+    const dy = py - mouseY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < influenceRadius) {
+      const force = (1 - dist / influenceRadius) * influence;
+      return { dx: dx * force * delta * 0.03, dy: dy * force * delta * 0.03 };
+    }
+    return { dx: 0, dy: 0 };
+  }
+
+  function computeLineAlpha(dist, connectDistance, lineAlpha) {
+    if (dist >= connectDistance) return 0;
+    return (1 - dist / connectDistance) * lineAlpha;
+  }
+
+  function wrapCoordinate(value, limit, margin) {
+    if (value < -margin) return limit + margin;
+    if (value > limit + margin) return -margin;
+    return value;
+  }
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { random, computeMouseInfluence, computeLineAlpha, wrapCoordinate };
+    return;
+  }
+
   const config = {
     particleCount: 110,
     connectDistance: 140,
@@ -35,10 +66,6 @@
     canvas.style.width = width + 'px';
     canvas.style.height = height + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-
-  function random(min, max) {
-    return Math.random() * (max - min) + min;
   }
 
   function createParticles() {

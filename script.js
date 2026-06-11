@@ -1,3 +1,74 @@
+// --- Testable pure helpers ---
+const STARTUP_RING_LENGTH_CONST = 942;
+const STARTUP_STATUSES_LIST = [
+  'Booting environment',
+  'Loading assets',
+  'Preparing interface',
+  'Almost ready',
+];
+
+function computeMousePercent(clientX, clientY, innerWidth, innerHeight) {
+  return {
+    x: (clientX / innerWidth) * 100,
+    y: (clientY / innerHeight) * 100,
+  };
+}
+
+function computeHeroPercent(clientX, clientY, rect) {
+  const heroX = ((clientX - rect.left) / rect.width) * 100;
+  const heroY = ((clientY - rect.top) / rect.height) * 100;
+  return {
+    x: Math.max(0, Math.min(100, heroX)),
+    y: Math.max(0, Math.min(100, heroY)),
+  };
+}
+
+function computeStartupVisuals(percent, ringLength, statuses) {
+  const width = `${percent}%`;
+  const label = `${Math.round(percent)}%`;
+  const dashoffset = ringLength * (1 - percent / 100);
+  const statusIndex = Math.min(
+    statuses.length - 1,
+    Math.floor((percent / 100) * statuses.length)
+  );
+  return { width, label, dashoffset, statusText: statuses[statusIndex] };
+}
+
+function computeScrollProgress(scrollTop, scrollHeight, windowHeight) {
+  const docHeight = scrollHeight - windowHeight;
+  return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+}
+
+function findActiveSection(scrollTop, sections, offset) {
+  let activeId = 'home';
+  sections.forEach(({ id, top }) => {
+    if (scrollTop >= top - offset) activeId = id;
+  });
+  return activeId;
+}
+
+function splitTextIntoWords(text) {
+  const parts = text.split(/(\s+)/);
+  return parts.map((part) => ({
+    isSpace: /^\s+$/.test(part),
+    text: part,
+  }));
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    computeMousePercent,
+    computeHeroPercent,
+    computeStartupVisuals,
+    computeScrollProgress,
+    findActiveSection,
+    splitTextIntoWords,
+    STARTUP_RING_LENGTH: STARTUP_RING_LENGTH_CONST,
+    STARTUP_STATUSES: STARTUP_STATUSES_LIST,
+  };
+}
+// --- End testable helpers ---
+
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
 
