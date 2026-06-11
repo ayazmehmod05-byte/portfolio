@@ -1,5 +1,7 @@
 (function () {
-  const config = {
+  var U = window.PortfolioUtils;
+
+  var config = {
     particleCount: 110,
     connectDistance: 140,
     lineAlpha: 0.12,
@@ -12,38 +14,34 @@
     backgroundColor: '#05070f'
   };
 
-  const mount = document.getElementById('particles-bg');
+  var mount = document.getElementById('particles-bg');
   if (!mount) return;
 
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
+  var canvas = document.createElement('canvas');
   mount.appendChild(canvas);
+  var scaled = U.scaleToDPR(canvas);
+  var ctx = scaled.ctx;
 
-  let width = 0;
-  let height = 0;
-  let rafId = null;
-  let lastTime = 0;
-  const mouse = { x: -9999, y: -9999 };
-  const particles = [];
-  const dpr = window.devicePixelRatio || 1;
-
-  function resize() {
-    width = mount.clientWidth;
-    height = mount.clientHeight;
-    canvas.width = Math.round(width * dpr);
-    canvas.height = Math.round(height * dpr);
-    canvas.style.width = width + 'px';
-    canvas.style.height = height + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
+  var width = 0;
+  var height = 0;
+  var mouse = U.createMouseTracker(mount);
+  var particles = [];
 
   function random(min, max) {
     return Math.random() * (max - min) + min;
   }
 
+  function resize() {
+    var dims = scaled.resize();
+    width = dims.width;
+    height = dims.height;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+  }
+
   function createParticles() {
     particles.length = 0;
-    for (let i = 0; i < config.particleCount; i += 1) {
+    for (var i = 0; i < config.particleCount; i += 1) {
       particles.push({
         x: random(0, width),
         y: random(0, height),
@@ -56,31 +54,20 @@
     }
   }
 
-  function updateMousePos(event) {
-    const rect = mount.getBoundingClientRect();
-    mouse.x = event.clientX - rect.left;
-    mouse.y = event.clientY - rect.top;
-  }
-
-  function clearMouse() {
-    mouse.x = -9999;
-    mouse.y = -9999;
-  }
-
-  function draw(time) {
-    rafId = requestAnimationFrame(draw);
-    const delta = Math.min((time - lastTime) / 16.67, 2);
-    lastTime = time;
+  function draw(dt) {
+    var delta = dt * 60;
 
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = config.backgroundColor;
     ctx.fillRect(0, 0, width, height);
 
-    const mouseActive = mouse.x >= 0 && mouse.y >= 0;
-    const influenceRadius = 180;
+    var mx = mouse.state.x;
+    var my = mouse.state.y;
+    var mouseActive = mx >= 0 && my >= 0;
+    var influenceRadius = 180;
 
-    for (let i = 0; i < particles.length; i += 1) {
-      const p = particles[i];
+    for (var i = 0; i < particles.length; i += 1) {
+      var p = particles[i];
       p.phase += 0.02 * delta;
       p.x += p.vx * config.speed * delta + Math.sin(p.phase * 0.7) * 0.12;
       p.y += p.vy * config.speed * delta + Math.cos(p.phase * 0.9) * 0.12;
@@ -91,28 +78,23 @@
       if (p.y > height + 20) p.y = -20;
 
       if (mouseActive) {
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        var dist = U.distance(p.x, p.y, mx, my);
         if (dist < influenceRadius) {
-          const force = (1 - dist / influenceRadius) * config.mouseInfluence;
-          p.x += dx * force * delta * 0.03;
-          p.y += dy * force * delta * 0.03;
+          var force = (1 - dist / influenceRadius) * config.mouseInfluence;
+          p.x += (p.x - mx) * force * delta * 0.03;
+          p.y += (p.y - my) * force * delta * 0.03;
         }
       }
     }
 
-    // Draw connection lines
-    for (let i = 0; i < particles.length; i += 1) {
-      const p = particles[i];
-      for (let j = i + 1; j < particles.length; j += 1) {
-        const q = particles[j];
-        const dx = p.x - q.x;
-        const dy = p.y - q.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+    for (var i = 0; i < particles.length; i += 1) {
+      var p = particles[i];
+      for (var j = i + 1; j < particles.length; j += 1) {
+        var q = particles[j];
+        var dist = U.distance(p.x, p.y, q.x, q.y);
         if (dist < config.connectDistance) {
-          const alpha = (1 - dist / config.connectDistance) * config.lineAlpha;
-          ctx.strokeStyle = `rgba(52, 214, 198, ${alpha})`;
+          var alpha = (1 - dist / config.connectDistance) * config.lineAlpha;
+          ctx.strokeStyle = 'rgba(52, 214, 198, ' + alpha + ')';
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
@@ -122,11 +104,10 @@
       }
     }
 
-    // draw particles
-    for (let i = 0; i < particles.length; i += 1) {
-      const p = particles[i];
-      const glow = p.radius * 3;
-      const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glow);
+    for (var i = 0; i < particles.length; i += 1) {
+      var p = particles[i];
+      var glow = p.radius * 3;
+      var gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glow);
       gradient.addColorStop(0, 'rgba(255,255,255,0.9)');
       gradient.addColorStop(0.2, 'rgba(52,214,198,0.45)');
       gradient.addColorStop(0.8, 'rgba(52,214,198,0.02)');
@@ -148,28 +129,25 @@
       ctx.strokeStyle = 'rgba(255,255,255,0.08)';
       ctx.lineWidth = 1.2;
       ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, influenceRadius, 0, Math.PI * 2);
+      ctx.arc(mx, my, influenceRadius, 0, Math.PI * 2);
       ctx.stroke();
     }
   }
+
+  var loop = U.createAnimationLoop(draw);
 
   function start() {
     resize();
     createParticles();
     window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', updateMousePos);
-    window.addEventListener('mouseout', clearMouse);
-    rafId = requestAnimationFrame(time => {
-      lastTime = time;
-      draw(time);
-    });
+    mouse.attach();
+    loop.start();
   }
 
   function stop() {
-    cancelAnimationFrame(rafId);
+    loop.stop();
     window.removeEventListener('resize', resize);
-    window.removeEventListener('mousemove', updateMousePos);
-    window.removeEventListener('mouseout', clearMouse);
+    mouse.detach();
   }
 
   start();
