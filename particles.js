@@ -1,4 +1,5 @@
 (function () {
+  try {
   const config = {
     particleCount: 110,
     connectDistance: 140,
@@ -17,6 +18,10 @@
 
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    console.warn('particles-bg: Unable to get 2D canvas context.');
+    return;
+  }
   mount.appendChild(canvas);
 
   let width = 0;
@@ -174,4 +179,7 @@
 
   start();
   window._particlesBg = { destroy: stop };
+  } catch (err) {
+    console.error('[portfolio] particles initialization failed:', err);
+  }
 })();

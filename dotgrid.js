@@ -16,6 +16,7 @@
 
   function DevicePixelRatioScale(canvas) {
     const ctx = canvas.getContext('2d');
+    if (!ctx) return null;
     function resize() {
       const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
@@ -29,7 +30,13 @@
   function initDotGrid(container, opts = {}) {
     if (!container) return;
     const canvas = createCanvas(container);
-    const { ctx, resize } = DevicePixelRatioScale(canvas);
+    const scale = DevicePixelRatioScale(canvas);
+    if (!scale) {
+      console.warn('dotgrid: Unable to get 2D canvas context.');
+      if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+      return;
+    }
+    const { ctx, resize } = scale;
 
     const cfg = Object.assign({
       dotSize: 4,
