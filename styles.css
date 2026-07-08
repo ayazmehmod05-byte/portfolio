@@ -570,17 +570,6 @@ a {
   transform: translateZ(0);
 }
 
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at var(--pointer-x)% var(--pointer-y)%, rgba(0, 255, 170, 0.1), transparent 12%),
-    radial-gradient(circle at 85% 10%, rgba(14, 240, 197, 0.08), transparent 18%);
-  pointer-events: none;
-  opacity: 0.6;
-  transform: translateZ(0);
-}
-
 .hero::before {
   content: '';
   position: absolute;
@@ -651,69 +640,6 @@ a {
   }
   50% {
     transform: translateY(-12px);
-  }
-}
-
-@keyframes floatDelay1 {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-14px);
-  }
-}
-
-@keyframes floatDelay2 {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-16px);
-  }
-}
-
-@keyframes floatDelay3 {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-18px);
-  }
-}
-
-@keyframes glowPulseCard {
-  0%, 100% {
-    box-shadow: 0 26px 80px rgba(0, 0, 0, 0.28);
-  }
-  50% {
-    box-shadow: 0 26px 100px rgba(14, 240, 197, 0.12);
-  }
-}
-
-@keyframes shimmer {
-  0%, 100% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
-}
-
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    filter: drop-shadow(0 0 0px rgba(14, 240, 197, 0));
-  }
-  50% {
-    filter: drop-shadow(0 0 12px rgba(14, 240, 197, 0.4));
   }
 }
 
@@ -1224,52 +1150,25 @@ h1:focus-visible,
   will-change: transform;
 }
 
-.work-card {
-  animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease 0.1s both;
-}
-
-.work-card:nth-child(2) {
-  animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease 0.2s both;
-}
-
-.work-card:nth-child(3) {
-  animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease 0.3s both;
-}
-
-.skill-card {
-  animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease forwards;
-}
-
-.skill-card:nth-child(2) {
-  animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease 0.1s both;
-}
-
-.skill-card:nth-child(3) {
-  animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease 0.2s both;
-}
-
-.project-card {
-  animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease forwards;
-}
-
-.project-card:nth-child(2) {
-  animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease 0.1s both;
-}
-
-.project-card:nth-child(3) {
-  animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease 0.2s both;
-}
-
+.work-card,
+.skill-card,
+.project-card,
 .achievement-card {
-  animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease forwards;
-}
-
-.achievement-card:nth-child(2) {
   animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease 0.1s both;
 }
 
-.achievement-card:nth-child(3) {
+.work-card:nth-child(2),
+.skill-card:nth-child(2),
+.project-card:nth-child(2),
+.achievement-card:nth-child(2) {
   animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease 0.2s both;
+}
+
+.work-card:nth-child(3),
+.skill-card:nth-child(3),
+.project-card:nth-child(3),
+.achievement-card:nth-child(3) {
+  animation: float 4s ease-in-out infinite, fadeInUp 0.8s ease 0.3s both;
 }
 
 .work-card:hover,
@@ -1509,19 +1408,6 @@ h1:focus-visible,
   color: var(--muted);
 }
 
-.contact-details div {
-  display: grid;
-  gap: 6px;
-}
-
-.contact-details strong {
-  color: var(--text);
-}
-
-.contact-details span {
-  color: var(--muted);
-}
-
 .footer {
   padding: 28px 24px;
   text-align: center;
@@ -1609,28 +1495,8 @@ h1:focus-visible,
   }
 }
 
-/* --- Particles background overrides and per-word glow --- */
-/* Hide old decorative pseudo-elements so new background is clean */
-body::before, body::after, .hero::before, .hero::after {
-  display: none !important;
-  content: none !important;
-}
-
 .hero {
   background: transparent !important;
-}
-
-#particles-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -3;
-  pointer-events: none;
-}
-
-#particles-bg canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 
 /* Per-word glow styling */

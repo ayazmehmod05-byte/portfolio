@@ -28,8 +28,9 @@ function updateMouseVariables(event) {
     const rect = hero.getBoundingClientRect();
     const heroX = ((event.clientX - rect.left) / rect.width) * 100;
     const heroY = ((event.clientY - rect.top) / rect.height) * 100;
-    root.style.setProperty('--hero-x', Math.max(0, Math.min(100, heroX)));
-    root.style.setProperty('--hero-y', Math.max(0, Math.min(100, heroY)));
+    var U = window.PortfolioUtils;
+    root.style.setProperty('--hero-x', U.clamp(heroX, 0, 100));
+    root.style.setProperty('--hero-y', U.clamp(heroY, 0, 100));
   }
 }
 
