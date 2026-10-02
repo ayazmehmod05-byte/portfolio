@@ -150,4 +150,8 @@
   }
 
   window.initDotGrid = initDotGrid;
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { clamp, createCanvas, DevicePixelRatioScale, initDotGrid };
+  }
 })();
